@@ -429,7 +429,7 @@ function makeGame(key = difficultySelect.value) {
     lemon.dangerous = true;
   });
 
-  safeTarget = TOTAL_LEMONS - dangerousCount + settings.inventory;
+  safeTarget = TOTAL_LEMONS - dangerousCount;
   safeTotalEl.textContent = safeTarget;
   logEl.innerHTML = "";
   resultOverlay.hidden = true;
@@ -573,7 +573,6 @@ function clickCell(pos) {
     lemons.push(placed);
     cell.explored=true;
     cell.flagged=false;
-    safeFound++;
     inventory--;
     refreshClues();
     updateStats();
