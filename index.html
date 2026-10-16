@@ -675,11 +675,18 @@ function moveLemons() {
     );
 
     if (candidates.length===0) continue;
-    const oldPos=lemon.pos;
-    const newPos=candidates[Math.floor(Math.random()*candidates.length)];
-    lemon.pos=newPos;
-    moved.add(oldPos);
-    moved.add(newPos);
+   const oldPos = lemon.pos;
+    const newPos = candidates[Math.floor(Math.random() * candidates.length)];
+
+// 旗が立っていたら、レモンと一緒に移動させる
+if (cells[oldPos].flagged) {
+  cells[oldPos].flagged = false;
+  cells[newPos].flagged = true;
+}
+
+lemon.pos = newPos;
+moved.add(oldPos);
+moved.add(newPos);
   }
   return moved;
 }
