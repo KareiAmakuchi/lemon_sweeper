@@ -704,10 +704,21 @@ function showResult(isWin) {
   const resultMakyoButton = document.getElementById("resultMakyoButton");
   resultMakyoButton.hidden = !(isWin && difficultyKey === "hard");
   resultTitle.textContent=isWin?"君はレモン鑑定士！":"WHO DIE? FOO-DIE!";
-  resultText.textContent=isWin
-    ? "おめでとう！"
-    : "攻撃性レモンに触れてしまった……！";
+  resultText.textContent = isWin
+  ? "おめでとう！"
+  : "攻撃性レモンに触れてしまった……！";
 
+// 手持ちから設置した安全レモンの数を表示
+const placedSafeText = document.getElementById("placedSafeText");
+
+if (isWin && difficultyKey !== "makyo") {
+  const placedCount = DIFFICULTIES[difficultyKey].inventory - inventory;
+  placedSafeText.textContent = `${placedCount}個安全レモンを設置した！`;
+  placedSafeText.hidden = false;
+} else {
+  placedSafeText.textContent = "";
+  placedSafeText.hidden = true;
+}
   resultOverlay.hidden=false;
   document.getElementById("resultNewGame").focus();
 }
